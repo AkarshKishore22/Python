@@ -1,54 +1,18 @@
 from threading import Thread
 from time import sleep
 
-import numpy as np
+mat=[[1,2,3],[4,5,6],[7,8,9]]
 
-m , n = 4, 4       
- 
-def threaded_row_sum(arr) :
- 
-    sum = 0
- 
-    print("\nFinding Sum of each row:\n")
+def mat_threaded_function(mat):
+    rng1=int(input("Enter the range "))
+    rng2=int(input("Enter the range "))
+    for i in range(3):
+        for j in range(3):
+            if(rng2>int(mat[i][j])>rng1):
+                print(mat[i][j])
+        sleep(1)
 
-    for i in range(m) :
-        for j in range(n) :
- 
-            sum += arr[i][j]
- 
-        print("Sum of the row",i,"=",sum)
-
-        sum = 0
- 
- 
-def threaded_column_sum(arr) :
- 
-    sum = 0
- 
-    print("\nFinding Sum of each column:\n")
- 
-    for i in range(m) :
-        for j in range(n) :
- 
-            sum += arr[j][i]
- 
-        print("Sum of the column",i,"=",sum)
- 
-        sum = 0
- 
-         
-if __name__ == "__main__" :
- 
-    arr = np.zeros((4, 4))
- 
-    x = 1
-     
-    for i in range(m) :
-        for j in range(n) :
-            arr[i][j] = x
- 
-            x += 1
-                 
-    threaded_row_sum(arr)
- 
-    threaded_column_sum(arr)
+if __name__ == "__main__":
+    thread = Thread(target = mat_threaded_function, args = (mat, ))
+    thread.start()
+    thread.join()
